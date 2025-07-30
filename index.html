@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Biography</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      color: #333;
+    }
+    #content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2.5em;
+    }
+    #goals, #achievements {
+      margin-top: 40px;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
 </head>
-
 <body>
-<h1> Hello WOrld you have FaIled mE HahaHaahAHAHAH </h1>
-</body>
+  <canvas id="bg"></canvas>
+  <div id="content">
+    <h1>My Biography</h1>
+    <section id="achievements">
+      <h2>Current Achievements</h2>
+      <ul>
+        <li>Completed my Bachelor's in Computer Science.</li>
+        <li>Developed several web applications.</li>
+        <li>Contributor to open source projects.</li>
+      </ul>
+    </section>
+    <section id="goals">
+      <h2>Future Goals</h2>
+      <ul>
+        <li>Master 3D graphics development.</li>
+        <li>Build user-friendly apps using Three.js.</li>
+        <li>Expand my professional network.</li>
+      </ul>
+    </section>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshNormalMaterial();
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 2;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
 </html>
